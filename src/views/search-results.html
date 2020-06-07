@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% set bodyId = "page-search-results" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/search-results.css">
+{% endblock styles %}
+
+{% block title %}
+    <title>Ecoleta - Resultados da Pesquisa</title>
+{% endblock title %}
+
+{% block content %}
+    <div id="page-search-results">
+
+        {% include "partials/page-header.html" %}
+
+        <main>
+    {% if total > 0 %}
+    
+
+            <h4 style="color: #6C6C80;">
+                <strong>{{ total }} pontos</strong>
+                encontrados
+            </h4>
+            <div class="cards">
+
+                {% for place in places %}
+                    <div class="card">
+                        <img src="{{ place.image }}" alt="{{ place.name }}">
+                        <h2>{{ place.name }}</h2>
+                        <h3>{{ place.items }}</h3>
+                        <p>{{ place.city }}<br>
+                            {{ place.address }}
+                            <br>
+                            {{ place.address2 }}</p>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {%else%}
+
+        <h2>Nenhum local não encontrado</h2>
+
+        {% endif %}
+        </main>
+    </div>
+{% endblock content %}
